@@ -53,6 +53,24 @@ class BotInteractionModel(ConversationModel):
     self.set_q(state,action,q)
 
 
+  """
+  Return the best action for a state
+  """
+  def choose_best_action(self,state):
+
+    def by_q(tup):
+      act, q = tup
+      return -q
+
+    if state in self.Q:
+      actions = [(act,q) for act,q in self.Q[state].items()]
+      if len(actions)>0:
+        return sorted(actions,by_q)[0]
+      else:
+        return None
+    else:
+      return None
+
 
 
 
