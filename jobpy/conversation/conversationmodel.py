@@ -45,15 +45,25 @@ class ConversationModel:
 
     self.transitions[state][action].append((state_,confidence))
 
+  """
+  List all available actions and their possible transitions
+  given the current state
+  @return {Dict} which maps action => [(next_state,confidence)]
+  """
   def get_transitions(self,state):
     return self.transitions[state]
 
+  """
+  List all actions which the bot can take on a state
+  @return {List} of actions
+  """
   def get_actions(self,state):
     return self.transitions[state]].keys()
 
   """
   List all next states if we apply an action on the current state.
   The result is a tuple of next state and its confidence score.
+  @return {List} of tuple (next_state, confidence), ordered by confidence value
   """
   def next_states(self,state,action):
     def most_confident_first(n):

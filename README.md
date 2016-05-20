@@ -61,7 +61,7 @@ tagging won't function.
 
 ---
 
-## Run the ρίζα
+## Run the ρίζα bot
 
 TBD
 
