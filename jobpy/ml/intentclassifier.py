@@ -10,12 +10,13 @@ import json
 from termcolor import colored
 from sklearn.cluster import KMeans
 
-def new(n_labels=10):
-  kmeans = KMeans(
-    n_clusters = n_labels
-  )
-  return kmeans
-
+def new(n_labels=10,method='kmeans'):
+  methods = {
+    'kmeans': KMeans(
+      n_clusters = n_labels
+    )
+  }
+  return methods[method]
 
 def save(operations,path):
   with open(path,'wb+') as f:
@@ -34,3 +35,9 @@ def safe_load(path):
 def classify(opr):
   def classify_us(vectors):
     return opr.transform(vectors)
+  return classify_us
+
+def train(opr):
+  def fit(vectors,labels):
+    return opr.fit(labels,vectors)
+  return fit

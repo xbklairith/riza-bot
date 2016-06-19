@@ -50,7 +50,7 @@ We use  the following NLP toolkits / libraries:
 - [x] [Thailang4r](https://github.com/veer66/thailang4r)
 - [x] [Jitar](https://github.com/danieldk/jitar)
 
-For scientific operations / machine learning:
+For scientific operations / machine learning / Visualisation:
 
 - [x] [Sci-kit Learn, preferrable 0.17.1+](http://scikit-learn.org/)
 
@@ -61,7 +61,13 @@ tagging won't function.
 
 ---
 
-## Run the ρίζα bot
+## Train ρίζα 
+
+TBD
+
+---
+
+## Run ρίζα
 
 TBD
 

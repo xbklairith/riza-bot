@@ -42,6 +42,9 @@ decomposers = {
 # Create a text process pipeline (vectorizer)
 def new(n_components=None,stop_words=[],decomposition='SVD'):
 
+  # Word stemming (English)
+  # TAOTODO:
+
   # Prepare vectoriser engines
   idf = TfidfVectorizer(
     ngram_range=(1,3), #Unigram,bigram,& trigram
