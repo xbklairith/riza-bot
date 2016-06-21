@@ -9,6 +9,7 @@ import os.path
 import pickle
 import json
 from termcolor import colored
+from .conversationmodel import ConversationModel
 
 class BotInteractionModel(ConversationModel):
   def __init__(self,alpha):

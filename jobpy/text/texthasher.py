@@ -34,7 +34,7 @@ decomposers = {
       n_components=n,
       alpha=1,
       max_iter=10
-    )
+    ),
   'SVD': lambda n:
     TruncatedSVD(n) # SVD may introduce some estimation losses
 }

@@ -9,7 +9,7 @@ User query data storage interface
 """
 class UserQuery:
   def __init__(self,host,dbcache):
-    # TAOTODO:
+    # TAOTODO: Initialise a database connection
     pass
 
   """

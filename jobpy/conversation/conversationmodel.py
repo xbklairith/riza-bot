@@ -58,7 +58,7 @@ class ConversationModel:
   @return {List} of actions
   """
   def get_actions(self,state):
-    return self.transitions[state]].keys()
+    return self.transitions[state].keys()
 
   """
   List all next states if we apply an action on the current state.
@@ -72,7 +72,7 @@ class ConversationModel:
 
     if action in self.transitions[state]:
       return sorted(self.transitions[state][action], most_confident_first)
-    else
+    else:
       return []
 
 
