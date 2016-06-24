@@ -76,8 +76,12 @@ from the physical file,
 or initialise a new object if the file doesn't exist
 """
 def safe_load(path,n_components,stop_words,decomposition):
-  if os.path.isfile(path): return load(path)
-  else: return new(n_components,stop_words,decomposition)
+  if os.path.isfile(path): 
+    print(colored('Text hasher loaded.','cyan'))
+    return load(path)
+  else: 
+    print(colored('Text hasher created...','yellow'))
+    return new(n_components,stop_words,decomposition)
 
 
 """

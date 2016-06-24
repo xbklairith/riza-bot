@@ -27,8 +27,12 @@ def load(path):
     return pickle.load(f)
 
 def safe_load(path):
-  if os.path.isfile(path): return load(path)
-  else: return new()
+  if os.path.isfile(path): 
+    print(colored('Intent classifier loaded.','cyan'))
+    return load(path)
+  else: 
+    print(colored('Intent classifier created...','yellow'))
+    return new()
 
 # Classify multiple vectors at a time using 
 # the specified trained operations
