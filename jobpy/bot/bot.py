@@ -13,10 +13,16 @@ from termcolor import colored
 class Bot:
   # Initialise the bot, and having required modules
   # injected in
+  # @param {TypeClass} IntentClassifier class
+  # @param {TypeClass} TextHasher class
   def __init__(self,IntentClf,TextHash):
     self.IntentClf    = IntentClf
     self.TextHash     = TextHash
+    self.kb           = {} # Knowledge base of everything
     self.conversation = []
+
+    # Prepare knowledge base datasource
+    # TAOTODO:
 
   """
   Register an intent classifier model
@@ -52,12 +58,29 @@ class Bot:
   """
   def add_input(self,user_intent,params,query):
     uq = ['user',user_intent,params,query]
-    self.conversation.append(['USER',uq])
+    # Append the new input to the conversation list
+    self.conversation.append(uq)
+    # Also register the state (user query) to the conversation model
     self.model.add_state(uq,'USER')
+    return uq
 
-    
+  """
+  Given the current conversation dialog,
+  generate the best output (action) which may lead 
+  to the desired state (next user's action)
+  """
   def generate_output(self):
     # TAOTODO:
+
+    # Check out the most recent state (user's input)
+    recent_state = self.conversation[-1]
+    u,user_intent,u_params,user_query = recent_state
+
+    # Generate the next preferred state
+    # TAOTODO:
+
+    botq = ['bot',bot_intent,params,query]
+    self.model.add_transition(user_intent,)
     pass
 
 
