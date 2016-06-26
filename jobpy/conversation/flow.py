@@ -9,42 +9,43 @@ import os.path
 import pickle
 import json
 from termcolor import colored
-from hmmlearn import hmm
-
-DIALOG_UNKNOWN     = 0
-DIALOG_GREET       = 0x01
-DIALOG_QUERY       = 0xA5
-DIALOG_INFORM      = 0x42
-DIALOG_FAREWELL    = 0xFF
+from hmmlearn.hmm import GaussianHMM
+from enum import Enum
 
 """
 TalkFlow defines how a dialog flows from one to another as a conversation.
-This derives Markov chain for its probability-driven to define 
+This derives Markov chain for its probability-driven graph to define 
 how an intention transitions to one another.
   X : observations   => Intents
-  Z : hidden states  => Dialog types (superset of intents)
+  Z : hidden states  => Hidden dialog semantics
   A : transitions    => How dialog type transtions to each other
   π : initial probs  => How probable each dialog starts with
 """
 class TalkFlow:
-  def __init__(self,n_):
+  def __init__(self):
     # Initially, create an empty new model
     np.random.seed(100)
-    self.model = hmm.GaussianHMM()
+    self.model = None
+    self.intents = [] # List of registered intents
 
+    # TAOTODO: Assign a vector of distribution of dialog types
+
+  """
+  Register the list of supported intents
+  @remark : Order of the tuple in the list DOES MATTER.
+  @param {List} list of tuples: (intent, initial probability of 0~1)
+  """
   def set_intents(self,intents):
-    pass
-
-  def set_dialogs(self,dialogs):
-    pass
-
-  """
-  Define how a dialog is observed as different intents.
-  @param {String} dialog
-  @param {List} list of tuples: (intent, probability 0~1)
-  """
-  def set_observation(self,dialog,intents):
-    pass
+    # Create a new model if not yet
+    if self.model is None:
+      self.model = GaussianHMM(
+        n_components=len(intents),
+        convariance_type="diag",
+        n_iter=80
+      )
+    # Initialise starting probabilities of those intents (X)
+    self.model.start_prob = np.array([p for intent,p in intents])
+    self.intents = [intent for intent,p in intents]
 
   def save(self,path):
     pass

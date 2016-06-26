@@ -8,6 +8,7 @@ import numpy as np
 import os.path
 import pickle
 import json
+import uuid
 from termcolor import colored
 
 class Bot:
@@ -21,16 +22,24 @@ class Bot:
     self.kb           = {} # Knowledge base of everything
     self.conversation = []
 
-    # Prepare knowledge base datasource
-    # TAOTODO:
+    # Generate a conversation UUID
+    self.uuid         = str(uuid.uuid1())
 
   """
   Register an intent classifier model
   """
   def add_intent_clf(self,clf):
     self.clf     = clf
+
+    # Make in-built functions for intent classification
     self._intent = self.IntentClf.classify(self.clf)
     self._train  = self.IntentClf.train(self.clf)
+
+  """
+  Register a talkflow model
+  """
+  def add_talk_flow(self,talk):
+    self.talkflow = talk
 
   """
   Register a bot interaction model
@@ -56,13 +65,25 @@ class Bot:
   """
   Add a user input (as a state in the conversation model)
   """
-  def add_input(self,user_intent,params,query):
+  def add_input(self,query):
+    # Extract user's intent
+    user_intent = extract_intent(query)
+    params = None # TAOTODO: Extract params with POS
+
     uq = ['user',user_intent,params,query]
     # Append the new input to the conversation list
     self.conversation.append(uq)
     # Also register the state (user query) to the conversation model
     self.model.add_state(uq,'USER')
     return uq
+
+  """
+  Get the historical sequence of dialogs so far
+  @return {List} of intents
+  """
+  def dialog_sequence(self):
+    return [intent for who,intent,params,query in self.conversation]
+
 
   """
   Given the current conversation dialog,
