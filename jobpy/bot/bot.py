@@ -63,6 +63,13 @@ class Bot:
     return intent
 
   """
+  Given an input (whitespace delimited), extract the latent knowledge
+  attached in the sentence
+  """
+  def extract_knowledge(self,phrase):
+    pass # TAOTODO:
+
+  """
   Add a user input (as a state in the conversation model)
   """
   def add_input(self,query):
