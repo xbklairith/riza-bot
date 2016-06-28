@@ -82,7 +82,7 @@ def prompt_user_query(bot,datasource_conv,datasource_query):
     entry.add_to(datasource_query)
 
   # Log the conversation
-  DialogEntry dialog(
+  dialog = DialogEntry(
     bot.uuid, 
     getpass.getuser(),
     q, _intent, params
@@ -106,7 +106,7 @@ def generate_response(bot):
       _intent = input(colored('  And what does it mean? : ', 'yellow'))
 
   # Log the conversation
-  DialogEntry dialog(
+  dialog = DialogEntry(
     bot.uuid,
     'bot',
     _resp, _intent, params
@@ -116,12 +116,12 @@ def generate_response(bot):
 if __name__ == '__main__':
 
   # Initialise all data sources
-  stdout('Initialising data sources...','cyan')
+  stdout(('Initialising data sources...','cyan'))
   datasource_query = UserQuery('localhost','riza')
   datasource_conv  = Conversation('localhost','riza')
 
   # Initialise a bot instance
-  stdout('Initialising bot...','cyan')
+  stdout(('Initialising bot...','cyan'))
   bot = init_bot('../data/models/')
 
   # Let the user start a conversation

@@ -67,7 +67,7 @@ class Bot:
   attached in the sentence
   """
   def extract_knowledge(self,phrase):
-    pass # TAOTODO:
+    pass # TAOTODO: Use POS to extract message
 
   """
   Add a user input (as a state in the conversation model)

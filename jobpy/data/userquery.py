@@ -17,8 +17,8 @@ class UserQuery:
   def __init__(self,host,db):
     server           = "mongodb://{0}:27017/".format(host)
     self.connector   = MongoClient(server)
-    self._db         = connector[db]
-    self._collection = _db[COLLECTION_QUERY_TEXT]
+    self._db         = self.connector[db]
+    self._collection = self._db[COLLECTION_QUERY_TEXT]
     print("Connected to query collection at: {0}".format(server))
 
   """
