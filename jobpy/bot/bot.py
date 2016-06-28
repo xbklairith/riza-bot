@@ -52,7 +52,7 @@ class Bot:
   """
   def add_text_hasher(self,t):
     self.hasher = t
-    self._hash  = self.TextHash(self.hasher,learn=True)
+    self._hash  = self.TextHash.hash(self.hasher,learn=True)
 
   """
   Given an input, extract a probable intent with arguments

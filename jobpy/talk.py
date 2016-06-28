@@ -51,7 +51,7 @@ def init_bot(model_dir):
     [],
     'LDA'
   )
-  bot = Bot(I,T)
+  bot = Bot(I,H)
   bot.add_intent_clf(intent_model)
   bot.add_bot_model(botmodel)
   bot.add_talk_flow(talkflow)
