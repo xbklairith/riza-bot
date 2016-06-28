@@ -44,8 +44,8 @@ class UserQueryEntry:
   
   def add_to(self,userquery):
     userquery.add({
-      user:   self.user,
-      query:  self.rawquery,
-      intent: self.intent,
-      params: self.params
+      'user':   self.user,
+      'query':  self.rawquery,
+      'intent': self.intent,
+      'params': self.params
     })

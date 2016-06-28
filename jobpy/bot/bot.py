@@ -74,7 +74,7 @@ class Bot:
   """
   def add_input(self,query):
     # Extract user's intent
-    user_intent = extract_intent(query)
+    user_intent = self.extract_intent(query)
     params = None # TAOTODO: Extract params with POS
 
     uq = ['user',user_intent,params,query]

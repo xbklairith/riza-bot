@@ -99,7 +99,7 @@ def hash(operations,learn=False):
 
     if learn:
       for i in range(len(operations)): 
-        print('Processing ... #{0} : {1}'.format(i,type(operations[i])))
+        print(colored('Processing ... #{0} : {1}'.format(i,type(operations[i])),'grey'))
         x = operations[i].fit_transform(x)
     else:
       for i in range(len(operations)): 

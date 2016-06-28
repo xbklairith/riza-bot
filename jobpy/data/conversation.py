@@ -46,12 +46,11 @@ class DialogEntry:
   @param {Conversation} data source object
   """
   def add_to(self,uid,conv):
-    conv.add({
-      conversation: uid,
-      t:            conv.t,
-      step:         conv.step,
-      user:         conv.speaker,
-      phrase:       conv.phrase,
-      intent:       conv.intent,
-      params:       conv.params
+    conv.add(uid,{
+      'conversation': uid,
+      't':            self.t,
+      'user':         self.speaker,
+      'phrase':       self.phrase,
+      'intent':       self.intent,
+      'params':       self.params
     })

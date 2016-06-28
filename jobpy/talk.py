@@ -51,7 +51,7 @@ def init_bot(model_dir):
     [],
     'LDA'
   )
-  bot = Bot(I,H)
+  bot = Bot(I,H) # TAOTODO: Also add a tokeniser
   bot.add_intent_clf(intent_model)
   bot.add_bot_model(botmodel)
   bot.add_talk_flow(talkflow)
@@ -83,11 +83,10 @@ def prompt_user_query(bot,datasource_conv,datasource_query):
 
   # Log the conversation
   dialog = DialogEntry(
-    bot.uuid, 
     getpass.getuser(),
     q, _intent, params
   )
-  dialog.add_to(datasource_conv)
+  dialog.add_to(bot.uuid,datasource_conv)
 
 def generate_response(bot):
   intent,params,resp = bot.generate_response()
@@ -107,11 +106,10 @@ def generate_response(bot):
 
   # Log the conversation
   dialog = DialogEntry(
-    bot.uuid,
     'bot',
     _resp, _intent, params
   )
-  dialog.add_to(datasource_conv)
+  dialog.add_to(bot.uuid,datasource_conv)
 
 if __name__ == '__main__':
 
